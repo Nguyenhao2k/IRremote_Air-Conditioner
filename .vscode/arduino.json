@@ -1,0 +1,5 @@
+{
+    "port": "/dev/ttyACM0",
+    "board": "arduino:mbed_nano:nano33ble",
+    "sketch": "test_ir_v2/test_ir_v2.ino"
+}
