@@ -7,7 +7,7 @@
 #include <PDM.h>
 
 #include "PinDefinitionsAndMore.h"
-#include <NguyenHua_model_v7_inferencing.h>
+#include <NguyenHua_94.3per_inferencing.h>
 
 #include <IRremote.hpp>
 
@@ -156,6 +156,14 @@ void loop()
     controlLed(1, 0, 1); // Violet - down
     switch (current_temp)
     {
+    case 28:
+      sendIR(0x24D, 0x9FC, 3);
+      Serial.println("Turn down temp to 27");
+      break;
+    case 27: 
+      sendIR(0x24D, 0xBFC, 3);
+      Serial.println("Turn down temp to 26");
+      break;
     case 26:
       sendIR(0x24D, 0x3FC, 3);
       Serial.println("Turn down temp to 25");
@@ -172,6 +180,13 @@ void loop()
       sendIR(0x24D, 0xEFC, 3);
       Serial.println("Turn down temp to 22");
       break;
+    case 22: 
+      sendIR(0x24D, 0x6FC, 3);
+      Serial.println("Turn down temp to 21");
+    case 21:
+      sendIR(0x24D, 0x4FC, 3);
+      Serial.println("Turn down temp to 20");
+      break;
     default:
       break;
     }
@@ -184,6 +199,14 @@ void loop()
     controlLed(0, 0, 1); // Blue - up
     switch (current_temp)
     {
+    case 20:
+      sendIR(0x24D, 0x6FC, 3);
+      Serial.println("Turn up temp to 21");
+      break;
+    case 21:
+      sendIR(0x24D, 0xEFC, 3);
+      Serial.println("Turn up temp to 22");
+      break;
     case 22:
       sendIR(0x24D, 0xAFC, 3);
       Serial.println("Turn up temp to 23");
@@ -199,6 +222,14 @@ void loop()
     case 25:
       sendIR(0x24D, 0xBFC, 3);
       Serial.println("Turn up temp to 26");
+      break;
+    case 26:
+      sendIR(0x24D, 0x9FC, 3);
+      Serial.println("Turn up temp to 27");
+      break;
+    case 27:
+      sendIR(0x24D, 0x1FC, 3);
+      Serial.println("Turn up temp to 28");
       break;
     default:
       break;
