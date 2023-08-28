@@ -135,7 +135,7 @@ void loop()
    * @brief Test send raw IR
    *
    */
-
+// Turn ON the air conditioner
   if (result.classification[2].value > 0.85)
   {
     controlLed(0, 1, 0); // Green - on
@@ -143,6 +143,7 @@ void loop()
     Serial.println("Turn ON at 25 degrees");
     current_temp = 25;
   }
+// Turn OFF the air conditioner
   else if (result.classification[3].value > 0.9)
   {
     controlLed(1, 0, 0); // Red - stop
@@ -236,38 +237,7 @@ void loop()
     }
     current_temp = current_temp + 1;
   }
-  // if (result.classification[0].value > 0.85)
-  // {
-  //   controlLed(1, 0, 1); // Violet - down
-  //   sendIR(0xB24D, 0xAFC, 3);
-  //   Serial.println("Turn down temp to 23");
-  // }
-  // else if (result.classification[2].value > 0.90)
-  // {
-  //   controlLed(0, 1, 0); // Green - on
-  //   sendIR(0xB24D, 0x2FC, 3);
-  //   Serial.println("Turn ON at 24 degrees");
-  // }
-  // else if (result.classification[3].value > 0.90)
-  // {
-  //   controlLed(1, 0, 0); // Red - stop
-  //   sendIR(0xB24D, 0x7DE, 3);
-  //   Serial.println("Turn OFF air conditioner");
-  // }
-  // else if (result.classification[5].value > 0.90)
-  // {
-  //   controlLed(0, 0, 1); // Blue - up
-  //   sendIR(0xB24D, 0x3FC, 3);
-  //   Serial.println("Turn UP to 25 Degrees");
-  // }
-  // else if (result.classification[1].value > 0.90 || result.classification[4].value > 0.90)
-  // {
-  //   controlLed(1, 1, 1); // White - noise or unknown
-  // }
-  // else
-  // {
-  //   controlLed(0, 0, 0);
-  // }
+
 
   // print the predictions
   ei_printf("Predictions ");
