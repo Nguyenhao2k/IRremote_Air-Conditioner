@@ -230,7 +230,7 @@ void noTone(uint8_t aPinNumber){
 
 #elif defined(ARDUINO_ARCH_MBED) && defined(ARDUINO_ARCH_MBED_NANO) // Arduino Nano 33 BLE
 #define IR_RECEIVE_PIN      3   // GPIO15 Start with pin 3 since pin 2|GPIO25 is connected to LED on Pi pico
-#define IR_SEND_PIN         4   // GPIO16
+#define IR_SEND_PIN         10   // GPIO16 - Change IRsendPin: D10
 #define TONE_PIN            5
 #define APPLICATION_PIN     6
 #define ALTERNATIVE_IR_FEEDBACK_LED_PIN 7 // E.g. used for examples which use LED_BUILDIN for example output.
