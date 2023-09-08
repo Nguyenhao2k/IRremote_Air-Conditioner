@@ -108,7 +108,6 @@ void loop()
   inferLed();
 
   ei_printf("Recording...\n");
-  digitalWrite(LEDB, HIGH);
 
   bool m = microphone_inference_record();
   if (!m)
