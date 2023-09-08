@@ -30,7 +30,7 @@ static bool debug_nn = false; // Set this to true to see e.g. features generated
 
 #define RED D2
 #define GREEN D3
-#define BLUE D5
+#define BLUE D4
 
 /**
   @brief      Control RGB LED
@@ -47,13 +47,18 @@ void controlLed(uint8_t R, uint8_t G, uint8_t B)
 */
 void inferLed()
 {
-  digitalWrite(LEDG, HIGH);
+  // Nhap nhay led 
+  digitalWrite(RED, HIGH);
+  digitalWrite(GREEN, HIGH);
   delay(250);
-  digitalWrite(LEDG, LOW);
+  digitalWrite(RED, HIGH);
+  digitalWrite(GREEN, HIGH);
   delay(250);
-  digitalWrite(LEDG, HIGH);
+  digitalWrite(RED, HIGH);
+  digitalWrite(GREEN, HIGH);
   delay(250);
-  digitalWrite(LEDG, LOW);
+  digitalWrite(RED, HIGH);
+  digitalWrite(GREEN, HIGH);
   delay(250);
 }
 
@@ -64,7 +69,7 @@ static void sendIR(uint16_t address, int command, int repeats)
 {
   Serial.flush();
   IrSender.sendSamsung48(address, command, repeats);
-  delay(5000);
+  delay(3000);
 }
 
 /**
@@ -74,9 +79,9 @@ void setup()
 {
 
   // put your setup code here, to run once:
-  pinMode(LEDR, OUTPUT);
-  pinMode(LEDG, OUTPUT);
-  pinMode(LEDB, OUTPUT);
+  // pinMode(LEDR, OUTPUT);
+  // pinMode(LEDG, OUTPUT);
+  // pinMode(LEDB, OUTPUT);
 
   Serial.begin(115200);
   IrSender.begin();
@@ -142,6 +147,7 @@ void loop()
     Serial.println("Turn ON at 25 degrees");
     current_temp = 25;
   }
+
 // Turn OFF the air conditioner
   else if (result.classification[3].value > 0.9)
   {
@@ -237,6 +243,9 @@ void loop()
     current_temp = current_temp + 1;
   }
 
+  else {
+    controlLed(0, 0, 0);
+  }
 
   // print the predictions
   ei_printf("Predictions ");
