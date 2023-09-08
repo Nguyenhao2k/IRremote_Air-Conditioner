@@ -47,18 +47,21 @@ void controlLed(uint8_t R, uint8_t G, uint8_t B)
 */
 void inferLed()
 {
-  // Nhap nhay led 
-  digitalWrite(RED, HIGH);
   digitalWrite(GREEN, HIGH);
+  digitalWrite(RED, HIGH);
+  digitalWrite(BLUE, HIGH);
   delay(250);
-  digitalWrite(RED, HIGH);
-  digitalWrite(GREEN, HIGH);
+  digitalWrite(GREEN, LOW);
+  digitalWrite(RED, LOW);
+  digitalWrite(BLUE, LOW);
   delay(250);
-  digitalWrite(RED, HIGH);
   digitalWrite(GREEN, HIGH);
+  digitalWrite(RED, HIGH);
+  digitalWrite(BLUE, HIGH);
   delay(250);
-  digitalWrite(RED, HIGH);
-  digitalWrite(GREEN, HIGH);
+  digitalWrite(GREEN, LOW);
+  digitalWrite(RED, LOW);
+  digitalWrite(BLUE, LOW);
   delay(250);
 }
 
@@ -69,7 +72,7 @@ static void sendIR(uint16_t address, int command, int repeats)
 {
   Serial.flush();
   IrSender.sendSamsung48(address, command, repeats);
-  delay(3000);
+  delay(2000);
 }
 
 /**
@@ -149,13 +152,19 @@ void loop()
   }
 
 // Turn OFF the air conditioner
-  else if (result.classification[3].value > 0.9)
+  if (result.classification[3].value > 0.9)
   {
     controlLed(1, 0, 0); // Red - stop
     sendIR(0xB24D, 0x7DE, 3);
     Serial.println("Turn OFF air conditioner");
   }
 
+  // Noise or Unknown
+  if ((result.classification[1].value > 0.90) || (result.classification[4].value > 0.9)) 
+  {
+    controlLed(0, 0, 0); // Yellow - unknown
+  }
+  
   // Turn down the temperature
   if (result.classification[0].value > 0.90)
   {
@@ -243,9 +252,9 @@ void loop()
     current_temp = current_temp + 1;
   }
 
-  else {
-    controlLed(0, 0, 0);
-  }
+  // else {
+  //   controlLed(0, 0, 0);
+  // }
 
   // print the predictions
   ei_printf("Predictions ");

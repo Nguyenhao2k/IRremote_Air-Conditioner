@@ -69,12 +69,16 @@ void controlLed(uint8_t R, uint8_t G, uint8_t B)
 void inferLed()
 {
   digitalWrite(LEDG, HIGH);
+  digitalWrite(LEDR, HIGH);
   delay(250);
   digitalWrite(LEDG, LOW);
+  digitalWrite(LEDR, LOW);
   delay(250);
   digitalWrite(LEDG, HIGH);
+  digitalWrite(LEDR, HIGH);
   delay(250);
   digitalWrite(LEDG, LOW);
+  digitalWrite(LEDR, LOW);
   delay(250);
 }
 
