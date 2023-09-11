@@ -145,8 +145,7 @@ void loop()
 // Turn ON the air conditioner
   if (result.classification[2].value > 0.85)
   {
-    // controlLed(0, 1, 0); // Green - on
-    controlLed(1, 0, 1);// Low active led
+    controlLed(1, 0, 1);// Green - on 
     sendIR(0xB24D, 0x3FC, 3);
     Serial.println("Turn ON at 25 degrees");
     current_temp = 25;
@@ -156,7 +155,6 @@ void loop()
   if (result.classification[3].value > 0.9)
   {
     controlLed(0, 1, 1); // Red - stop
-    //controlLed(1, 0, 0); 
     sendIR(0xB24D, 0x7DE, 3);
     Serial.println("Turn OFF air conditioner");
   }
@@ -170,7 +168,7 @@ void loop()
   // Turn down the temperature
   if (result.classification[0].value > 0.90)
   {
-    // controlLed(1, 0, 1); // Violet - down
+    // Violet - down
     controlLed(0, 1, 0);
     switch (current_temp)
     {
@@ -214,7 +212,7 @@ void loop()
   // Turn up the temperature
   if (result.classification[5].value > 0.90)
   {
-    // controlLed(0, 0, 1); // Blue - up
+    // Blue - up
     controlLed(1, 1, 0); 
     switch (current_temp)
     {
